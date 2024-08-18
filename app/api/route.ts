@@ -3,9 +3,9 @@ import { NextResponse } from "next/server"
 
 export async function GET() {
     const user = {
-        clerkId: "1234",
-        email: "test@12345.com",
-        username: "test12345",
+        clerkId: Math.random().toString(36).substring(7),
+        email: Math.random().toString(36).substring(7) + "@12345.com",
+        username: Math.random().toString(36).substring(7),
         firstName: "first_name",
         lastName: "last_name",
         photo: "image_url",
