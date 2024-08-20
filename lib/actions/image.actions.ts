@@ -103,12 +103,11 @@ export async function getAllImages({ limit = 9, page = 1, searchQuery = '' }: {
 
     cloudinary.config({
       cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-      api_key: process.env.CLOUDINARY_API_KEY,
+      api_key: process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY,
       api_secret: process.env.CLOUDINARY_API_SECRET,
       secure: true,
     })
-
-    let expression = 'folder=imaginify';
+    let expression = 'folder=""';
 
     if (searchQuery) {
       expression += ` AND ${searchQuery}`
@@ -118,6 +117,7 @@ export async function getAllImages({ limit = 9, page = 1, searchQuery = '' }: {
       .expression(expression)
       .execute();
 
+    console.log(resources);   
     const resourceIds = resources.map((resource: any) => resource.public_id);
 
     let query = {};
